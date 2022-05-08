@@ -27,9 +27,7 @@ public class PaymentServiceImpl implements PaymentService {
     public PaymentResponseDto pay(Long productId) {
         Product product = productService.getProductByIdWithLock(productId);
         int stock = product.getStock();
-        System.out.println("Veritabanından çekilen stock " + stock);
         if (stock <= 0) throw new StockDepletedException("Stock is depleted");
-        System.out.println("Ödeme işlemi gerçekleştiriliyor....");
         paymentMethod.pay(product);
         stock--;
         product.setStock(stock);

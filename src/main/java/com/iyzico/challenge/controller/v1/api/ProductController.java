@@ -41,7 +41,7 @@ public class ProductController {
         return new ResponseEntity<>(productResponseDto, HttpStatus.OK);
     }
 
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<List<ProductResponseDto>> getAllProducts() {
         return new ResponseEntity<>(productManager.getAllProducts(), HttpStatus.OK);
     }

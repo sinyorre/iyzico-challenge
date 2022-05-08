@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:hsqldb:hsql://localhost:9001/db
+    url: jdbc:hsqldb:hsql:/localhost:9001/db/test
     driverClassName: org.hsqldb.jdbcDriver
-    username: SA
+    username: root
     password:
   jpa:
     show-sql: false

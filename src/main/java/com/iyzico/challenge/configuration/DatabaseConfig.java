@@ -8,11 +8,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 import javax.sql.DataSource;
-import java.util.concurrent.TimeUnit;
 
 @Configuration
 @ConfigurationProperties(prefix = "spring.datasource")
@@ -46,9 +43,9 @@ public class DatabaseConfig {
         config.setPoolName("my db pool");
         config.setMaximumPoolSize(2);
 
-        /*config.setConnectionTimeout(300000);
+        config.setConnectionTimeout(300000);
         config.setConnectionTimeout(120000);
-        config.setLeakDetectionThreshold(300000);*/
+        config.setLeakDetectionThreshold(300000);
         return config;
     }
 }
