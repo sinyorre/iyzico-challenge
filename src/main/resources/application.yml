@@ -1,0 +1,15 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:hsqldb:hsql://localhost:9001/db
+    driverClassName: org.hsqldb.jdbcDriver
+    username: SA
+    password:
+  jpa:
+    show-sql: true
+    open-in-view: false
+
+apiKey: sandbox-JsJy5blrlzWNreQj0OWE9Apt9Dnq2bGe
+secretKey: sandbox-AfsGPNARPK3JAvHQO8ZXEnXAOlXYYBGN
+baseUrl: https://sandbox-api.iyzipay.com
