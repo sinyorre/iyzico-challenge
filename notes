@@ -1,0 +1,90 @@
+- https://mkyong.com/java/how-to-calculate-date-time-difference-in-java/
+- https://localcoder.org/calculate-date-time-difference-in-java-considering-am-pm
+- https://stackoverflow.com/questions/60512711/time-difference-in-am-pm-in-java
+- https://howtodoinjava.com/java8/java8-boxed-intstream/
+- https://linuxtut.com/en/935f45b252f9882ab958/
+- https://www.baeldung.com/migrating-to-java-8-date-time-api
+- https://howtodoinjava.com/java/date-time/java8-datetimeformatter-example/
+- https://beginnersbook.com/2017/11/java-datetimeformatter/
+- https://stackoverflow.com/questions/17341214/difference-between-java-hhmm-and-hhmm-on-simpledateformat
+- https://stackoverflow.com/questions/13581608/displaying-am-and-pm-in-lower-case-after-date-formatting/13581910#13581910
+- https://stackoverflow.com/questions/68364049/while-parsing-date-with-upper-case-month-name-i-get-java-time-format-datetimepar
+- https://stackoverflow.com/questions/38250379/java8-datetimeformatter-am-pm
+- https://stackoverflow.com/questions/1073919/how-to-convert-int-into-listinteger-in-java
+- https://www.javatpoint.com/difference-between-comparable-and-comparator
+- https://stackoverflow.com/questions/60193070/how-to-sort-array-of-times-with-am-and-pm-at-the-end-in-descending-order-in-java
+- https://www.programiz.com/java-programming/examples/convert-array-set
+
+        // Two Sum //
+        int[] arr = {17, 5, 10, 7, 12, 20, -3};
+        Integer[] integerArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
+        List<Integer> collect = Arrays.stream(arr).boxed().collect(Collectors.toList());
+        Set<Integer> set = new HashSet<>(Arrays.asList(integerArr));
+
+        int target = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            int num = arr[i];
+            int diff = target - num;
+            if (set.contains(diff)) {
+                System.out.println(num + "," + diff);
+                set.remove(num);
+                set.remove(diff);
+            }
+        }
+
+        // Dates //
+
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ssa");
+
+        Date date1 = df.parse("02:30:0PM");
+        Date date2 = df.parse("2:35:00PM");
+        long diff = Math.abs(date1.getTime() - date2.getTime());
+        long differenceInHours = diff / 1000 / 60;
+        System.out.println(differenceInHours);
+
+        // ---------------------------------------------------------- //
+
+        DateTimeFormatter ss = DateTimeFormatter.ofPattern("hh:mm:ss a");
+        DateTimeFormatter format = new DateTimeFormatterBuilder()
+                .parseCaseInsensitive()
+                .parseLenient()
+                .appendPattern("hh:mm:ss a")
+                .toFormatter(Locale.getDefault());
+
+        LocalTime time1 = LocalTime.parse("2:00:00 AM", format);
+        LocalTime time2 = LocalTime.parse("02:01:00 pm", format);
+        Duration dur = Duration.between(time1, time2);
+        System.out.println(dur.toMinutes() + " minutes " + dur.toSecondsPart() + " seconds");
+
+        // ----------------------------------------------------------- //
+
+        long ts = 1022895271767L;
+        SimpleDateFormat sdf = new SimpleDateFormat(" MMM d 'at' hh:mm a");
+        // CREATE DateFormatSymbols WITH ALL SYMBOLS FROM (DEFAULT) Locale
+        DateFormatSymbols symbols = new DateFormatSymbols(Locale.getDefault());
+        // OVERRIDE SOME symbols WHILE RETAINING OTHERS
+        symbols.setAmPmStrings(new String[] { "AM", "pm" });
+        sdf.setDateFormatSymbols(symbols);
+        String st = sdf.format(ts);
+        System.out.println("time is " + st);
+
+        // ------------------------------------------------------------ //
+
+        // Sort
+
+        List<Integer> list = Arrays.asList(5, 4, 3, 2, 1);
+        Comparator<Integer> integerComparator = (a, b) -> -a.compareTo(b);
+        System.out.println(list.toString());
+
+        String[] time =  {"8:00 am", "8:32 am", "8:10 am", "1:00 pm", "3:00 pm", "2:00 pm"};
+        DateTimeFormatter frmttr = new DateTimeFormatterBuilder()
+                .parseCaseInsensitive()
+                .parseLenient()
+                .appendPattern("h:mm a")
+                .toFormatter(Locale.getDefault());
+
+        Arrays.sort(time, Comparator.comparing(str-> LocalTime.parse(str.toUpperCase(), frmttr)));
+        System.out.println(time);
+        
+        
+- https://tr.wordpress.org/themes/generatepress/
